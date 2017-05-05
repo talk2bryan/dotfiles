@@ -1,11 +1,30 @@
 " Vundle setup
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
+syntax off
 
-" Other bundles here:
+" important: first, clone...
+" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" then :PluginInstall ;and PluginUpdate as root.
+
+
+" set the runtime path for vundle
+set rtp+=~/.vim/bundle/Vundle.vim/
+
+" start the vundle environment
+call vundle#begin()
+
+" old: Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
+
+
+"
+" to install a plugin add it here and run :PluginInstall.
+" to update the plugins run :PluginInstall! or :PluginUpdate
+" to delete a plugin remove it here and run :PluginClean
+"
+
+" Other bundles:
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'

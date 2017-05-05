@@ -1,4 +1,4 @@
-for file in aliases prompt
+for file in aliases
     source ~/.config/fish/includes/$file.fish
 end
 
