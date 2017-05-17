@@ -7,7 +7,7 @@ function cleanupds -d 'Recursively remove .DS_Store files'
 end
 
 function drjava -d 'Run DrJava in background'
-  java -jar ~/apps/drjava-beta-20160913-225446.jar &
+  java -jar /usr/share/applications/drjava-beta-20160913-225446.jar &
 end
 
 # Simple functions that are basically aliases
@@ -40,6 +40,10 @@ end
 
 function d -d 'Go to Dropbox'
     cd ~/Dropbox
+end
+
+function dblab -d 'Go to COMP4710'
+    cd ~/Dropbox/University/Summer17/COMP4710
 end
 
 function dl -d 'Go to Downloads'
