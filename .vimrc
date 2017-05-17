@@ -14,15 +14,14 @@ set rtp+=~/.vim/bundle/Vundle.vim/
 " start the vundle environment
 call vundle#begin()
 
-" old: Plugin 'gmarik/Vundle.vim'
+" old: Plugin gmarik/Vundle.vim
 Plugin 'VundleVim/Vundle.vim'
 
 
-"
 " to install a plugin add it here and run :PluginInstall.
 " to update the plugins run :PluginInstall! or :PluginUpdate
 " to delete a plugin remove it here and run :PluginClean
-"
+
 
 " Other bundles:
 Plugin 'tpope/vim-abolish'
@@ -40,16 +39,14 @@ syntax on
 " Enhance command line completion
 set wildmenu
 
-
 autocmd FileType bzl AutoFormatBuffer buildifier
 
-" Key binding for auto-ClangFormat to C-K
-" (Note that this is different than :FormatCode)
+" Key binding for auto-ClangFormat to C-K. (Note that this is different than :FormatCode)
 noremap <C-K> :ClangFormat<CR>
 inoremap <C-K> :ClangFormat<CR>
 
-" Clang include fixer; adds one new header at a time to the current file.
-" Also calls blazedeps; some possibility that this combination will be annoying,
+" Clang include fixer adds one new header at a time to the current file.
+" Also calls blazedeps some possibility that this combination will be annoying,
 " because blazedeps can become interactive and block gvim indefinitely.
 " Also note the save: BlazeDepsUpdate does nothing if the file is not saved.
 " See go/include-fixer
@@ -81,7 +78,7 @@ set shellcmdflag=-ic
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
 let g:ycm_always_populate_location_list = 1
-
+let g:ycm_global_ycm_extra_conf = ['~/.vim/.ycm_extra_conf.py']
 
 " Status line, including git branch info
 set statusline=%{fugitive#statusline()}  " git status
@@ -95,10 +92,11 @@ set statusline+=\ %l/%L  " cursor line / total lines
 set statusline+=\ %P     " percent through file
 set laststatus=2         " enable this hot monster
 
-" Auto-adjust windows when resizing: equal width and height. (To make vsplit
-" windows better behaved / less manually managed.)
-autocmd VimResized * exec "normal \<C-w>="
+" Auto-adjust windows when resizing: equal width and height. (To make vsplit windows better behaved / less manually managed.)
+autocmd VimResized * exec 'normal \<C-w>='
 
 " Disable audible and visible bells (http://vim.wikia.com/wiki/Disable_beeping)
 set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
+if has ('autocmd')
+  autocmd GUIEnter * set visualbell t_vb=
+endif
