@@ -42,6 +42,14 @@ function d -d 'Go to Dropbox'
     cd ~/Dropbox
 end
 
+function proj -d 'Got to Projects dir'
+  cd ~/Projects
+end
+
+function md -d 'Shortcut for creating dirs'
+  mkdir $argv
+end
+
 function dblab -d 'Go to COMP4710'
     cd ~/Dropbox/University/Summer17/COMP4710
 end
