@@ -1,6 +1,3 @@
-#alias l="ls -lahA"       # List in long format, include dotfiles
-#alias ld="ls -ld */"   # List in long format, only directories
-#alias --="cd -" # Go to previous dir"
 
 function cleanupds -d 'Recursively remove .DS_Store files'
   find . -type f -name '*.DS_Store' -ls -delete
@@ -11,6 +8,10 @@ function drjava -d 'Run DrJava in background'
 end
 
 # Simple functions that are basically aliases
+
+function .. -d 'Go to prev dir'
+  cd ..
+end
 
 function ... -d 'Go up 2 dirs'
   cd ../..
@@ -113,7 +114,11 @@ function lsa -d 'List all files in short format'
   ls -aFG $argv
 end
 
-function lsd -d 'List only directories'
+function lsd -d 'List only directories in current directory'
+  ls -ld */
+end
+
+function ldi -d 'List only directories in given directory'
   ls -l $argv | grep "^d" --color=never
 end
 
