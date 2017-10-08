@@ -25,9 +25,15 @@ function ..... -d 'Go up 4 dirs'
   cd ../../../..
 end
 
+####################################
+# Setting -- as a function does    #
+# work for now. Quick fix.         #
+####################################
 #function -- -d 'Go to previous dir'
 #  cd -
 #end 
+abbr -a -- - 'cd -'
+####################################
 
 alias cl 'wc -l'
 
