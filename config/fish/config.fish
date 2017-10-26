@@ -4,5 +4,6 @@ end
 
 switch (uname)
 case Linux
-	set -gx PATH $PATH /opt/idea-IU-171.4249.39/bin
+	set -gx PATH /opt/idea-IU-171.4249.39/bin $PATH
+	set -gx PATH /usr/local/cuda-9.0/bin $PATH
 end
