@@ -25,6 +25,11 @@ function ..... -d 'Go up 4 dirs'
   cd ../../../..
 end
 
+function mkcd -d 'mkdir and cd'
+  mkdir $argv
+  cd $argv
+end
+
 ####################################
 # Setting -- as a function does    #
 # work for now. Quick fix.         #
