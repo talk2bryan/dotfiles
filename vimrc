@@ -36,6 +36,9 @@ set tabstop=4 		" tab width is 4 spaces
 set shiftwidth=4 	" indent also with 4 spaces
 set expandtab 		" expand tabs to spaces
 
+" enable backspace
+set backspace=indent,eol,start
+
 
 " wrap lines at 80 chars
 set textwidth=80
