@@ -42,6 +42,10 @@ abbr -a -- - 'cd -'
 
 alias cl 'wc -l'
 
+function refresh -d 'Source config.fish file'
+  source ~/.config/fish/config.fish
+end
+
 function cloc -d 'Count Lines of Code (except node_modules)'
   command cloc --exclude-dir=node_modules $argv
 end
