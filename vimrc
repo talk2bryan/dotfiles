@@ -46,6 +46,8 @@ set textwidth=80
 if has ('autocmd')
     autocmd FileType cpp,cc,cxx,h,hpp,python,go,borg,BUILD,sh,javascript,js setlocal colorcolumn=81
     autocmd FileType java setlocal colorcolumn=101
+    autocmd Filetype java setlocal omnifunc=javacomplete#Complete
+    autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
 endif
 
 " turn syntax highlighting on
