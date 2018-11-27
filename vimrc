@@ -89,9 +89,9 @@ set comments=sl:/*,mb:\ *,elx:\ */
 " Load standard tag files
 set tags+=~/.vim/tags/cpp
 set tags+=~/.vim/tags/cpp_src/
-" set tags+=~/.vim/tags/gl
-" set tags+=~/.vim/tags/sdl
-" set tags+=~/.vim/tags/qt4
+" Download src.zip from https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html and 
+"      save generated tag file as ~/.vim/tags/java using http://blog.vinceliu.com/2007/08/vim-tips-for-java-2-using-exuberant.html
+set tags+=~/.vim/tags/java
 
 " build tags of your own project with Ctrl-F12
 map <C-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
