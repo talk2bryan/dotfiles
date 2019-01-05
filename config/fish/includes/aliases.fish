@@ -42,6 +42,8 @@ abbr -a -- - 'cd -'
 
 alias cl 'wc -l'
 
+alias hr 'history --merge'  # read and merge history from disk
+
 function refresh -d 'Source config.fish file'
   source ~/.config/fish/config.fish
 end
