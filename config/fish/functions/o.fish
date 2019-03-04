@@ -1,7 +1,7 @@
 function o -d 'Open files or current dir if no args'
     if test -z $argv[1]
-        open .
+        xdg-open .
     else
-        open $argv
+        xdg-open $argv
     end
 end
