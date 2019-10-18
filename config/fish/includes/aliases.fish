@@ -155,8 +155,8 @@ function install -d 'Install packages'
   sudo apt-get install -y $argv
 end
 
-function remove -d 'uninstall packages'
-  sudo apt-get remove -y $argv
+function remove -d 'uninstall packages and its dependencies'
+  sudo apt-get --autoremove remove -y $argv
 end
 
 function cls -d 'clear terminal console'
