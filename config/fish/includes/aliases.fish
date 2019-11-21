@@ -4,7 +4,7 @@ function cleanupds -d 'Recursively remove .DS_Store files'
 end
 
 function drjava -d 'Run DrJava in background'
-  java -jar /usr/share/applications/drjava-beta-20160913-225446.jar &
+  java -jar /usr/share/applications/drjava.jar &
 end
 
 # Simple functions that are basically aliases
@@ -141,10 +141,6 @@ end
 
 function map -d 'Intuitive map function'
  xargs -n1 $argv
-end
-
-function nout -d 'npm outdated --depth=0'
-  npm outdated --depth=0 $argv
 end
 
 function pgl -d 'Find matching running processes'
