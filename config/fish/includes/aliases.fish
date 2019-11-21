@@ -68,10 +68,6 @@ function md -d 'Shortcut for creating dirs'
   mkdir $argv
 end
 
-function dblab -d 'Go to COMP4710'
-    cd ~/Dropbox/University/Summer17/COMP4710
-end
-
 function dl -d 'Go to Downloads'
     cd ~/Downloads
 end
@@ -153,6 +149,10 @@ end
 
 function remove -d 'uninstall packages, its configs & dependencies'
   sudo apt-get purge --autoremove remove -y $argv
+end
+
+function autoremove -d 'Autoremove packages'
+  sudo apt -y autoremove
 end
 
 function cls -d 'clear terminal console'
