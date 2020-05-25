@@ -143,6 +143,10 @@ function pgl -d 'Find matching running processes'
   pgrep -lf $argv
 end
 
+function untar -d 'Extract a .tar file'
+  tar -xvf -y $argv
+end
+
 function install -d 'Install packages'
   sudo apt-get install -y $argv
 end
