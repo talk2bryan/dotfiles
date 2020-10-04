@@ -1,17 +1,17 @@
-set shell=/bin/bash
+set shell=/usr/bin/bash
 
 " VIM config file to support mostly C++ with fish.
 " Author: Bryan Wodi
 " Adapted from Gerhard G. <https://gist.github.com/rocarvaj/2513367>.
-" And from my old version <https://github.com/talk2bryan/dotfiles/blob/7418dfed6d8754c53a2de01b61279278734cca99/vimrc>
+" And from my old version <https://github.com/talk2bryan/dotfiles/blob/7418dfed6d8754c53a2de01b61279278734cca99/vimrc>.
 " Date: January 4, 2018.
-"
 
 set nocp
 filetype plugin on
 
 " set UTF-8 encoding
 set enc=utf-8
+set encoding=utf-8
 set fenc=utf-8
 set termencoding=utf-8
 
@@ -49,6 +49,9 @@ if has ('autocmd')
     autocmd Filetype java setlocal omnifunc=javacomplete#Complete
     autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
 endif
+
+" flag unnecessary Whitespace
+au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " turn syntax highlighting on
 set t_Co=256
@@ -123,10 +126,21 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 
+" C++ omniunction integration
 au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
 
 " autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
 
+
+" Python indentation
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
 
 " DoxygenToolkit for comments
 let g:DoxygenToolkit_authorName="Bryan Wodi <talk2kamp@gmail.com>"
