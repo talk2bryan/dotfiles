@@ -1,5 +1,5 @@
 
-function cleanupds -d 'Recursively remove .DS_Store files'
+function removeds -d 'Recursively remove .DS_Store files'
   find . -type f -name '*.DS_Store' -ls -delete
 end
 
