@@ -60,8 +60,8 @@ function d -d 'Go to Dropbox'
     cd ~/Dropbox
 end
 
-function proj -d 'Got to Projects dir'
-  cd ~/Projects
+function proj -d 'Got to projects dir'
+  cd ~/projects
 end
 
 function md -d 'Shortcut for creating dirs'
