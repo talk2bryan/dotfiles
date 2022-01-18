@@ -41,7 +41,7 @@ set backspace=indent,eol,start
 
 
 " wrap lines at 80 chars
-set textwidth=80
+" set textwidth=80
 " show a line at the 81st character for non-java, 101st for java
 if has ('autocmd')
     autocmd FileType cpp,cc,cxx,h,hpp,python,go,borg,BUILD,sh,javascript,js setlocal colorcolumn=81
