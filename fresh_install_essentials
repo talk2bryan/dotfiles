@@ -1,0 +1,116 @@
+#!/bin/bash
+
+############################################
+########### Variables ###########
+SHELL_DIR="$SHARED_DIR/shell"
+FISH="$SHELL_DIR/fish"
+
+############################################
+########### Functions ###########
+
+function install_minimum_essentials()
+{
+    echo ""
+    echo Installing minimum essentials
+    sudo apt update && sudo apt install -y git curl wget vim htop tmux direnv
+}
+
+function install_fish_shell()
+{
+    echo ""
+    echo Installing fish
+    # Check if fish is installed
+    if [ -x "$(command -v fish)" ]; then
+        echo "fish is already installed"
+    else
+        sudo apt update && sudo apt install -y fish
+    fi
+    echo ""
+    echo fish install location is "$(which fish)"
+
+    # Check if fish is default shell
+    if [ "$(which fish)" = "$SHELL" ]; then
+        echo "fish is already default shell"
+    else
+        echo Switching default shell to fish
+        chsh -s $(which fish)
+    fi
+
+    echo ""
+    echo Linking fish config files
+    ln -sf $FISH/config.fish $HOME/.config/fish/config.fish
+    ln -sf $FISH/functions $HOME/.config/fish/functions
+    ln -sf $FISH/includes $HOME/.config/fish/includes
+}
+
+function link_vim_other_configs()
+{
+    echo ""
+    echo Linking vimrc file
+    ln -sf $SHELL_DIR/vim/vimrc $HOME/.vimrc
+    ln -sf $SHELL_DIR/ssh/config $HOME/.ssh/config
+}
+
+
+function install_pyenv()
+{
+    echo ""
+    echo Installing pyenv
+    if [ -x "$(command -v pyenv)" ]; then
+        echo "pyenv is already installed"
+    else
+        curl https://pyenv.run | bash
+        echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $HOME/.profile
+        echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> $HOME/.profile
+        echo 'eval "$(pyenv init -)"' >> $HOME/.profile
+
+        echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $HOME/.bashrc
+        echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> $HOME/.bashrc
+        echo 'eval "$(pyenv init -)"' >> $HOME/.bashrc
+        echo 'eval "$(pyenv virtualenv-init -)"' >> $HOME/.bashrc
+
+        # Add pyenv to fish if fish is installed
+        if [ -x "$(command -v fish)" ]; then
+            fish -c "set -Ux PYENV_ROOT $HOME/.pyenv"
+            fish -c "fish_add_path $PYENV_ROOT/bin"
+        fi
+    fi
+}
+
+
+function install_pipenv()
+{
+    echo ""
+    echo Installing pipenv
+    # Install pipx if not installed
+    if [ -z "$(command -v pipx)" ]; then
+        python3 -m pip install --user pipx
+        python3 -m pipx ensurepath
+    fi
+
+    # Install some libraries if on a debian based system
+    if [ -x "$(command -v apt)" ]; then
+        sudo apt-get update; sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
+        libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+        libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+    fi
+
+    pipx install pipenv
+
+    # Find the python user-base path
+    USER_BASE_PATH=$(python3 -m site --user-base)
+    echo 'export PATH="$PATH:'$USER_BASE_PATH'/bin"' >> $HOME/.profile
+
+    # Add pipenv to fish if fish is installed
+    if [ -x "$(command -v fish)" ]; then
+        fish -c "fish_add_path $USER_BASE_PATH/bin"
+    fi
+}
+
+############################################
+########### Main ###########
+install_minimum_essentials
+install_fish_shell
+link_vim_other_configs
+install_pyenv
+install_pipenv
