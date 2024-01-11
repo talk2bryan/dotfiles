@@ -41,17 +41,21 @@ set backspace=indent,eol,start
 
 
 " wrap lines at 80 chars
-" set textwidth=80
+set textwidth=80
+" autocmd-related commands start from here.
+
 " show a line at the 81st character for non-java, 101st for java
 if has ('autocmd')
     autocmd FileType cpp,cc,cxx,h,hpp,python,go,borg,BUILD,sh,javascript,js setlocal colorcolumn=81
+    autocmd FileType markdown setlocal colorcolumn=107
+    autocmd FileType markdown setlocal textwidth=107
     autocmd FileType java setlocal colorcolumn=101
     autocmd Filetype java setlocal omnifunc=javacomplete#Complete
     autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
 endif
 
 " flag unnecessary Whitespace
-au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+:au BufNewFile, BufRead *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " turn syntax highlighting on
 set t_Co=256
@@ -79,7 +83,7 @@ endif
 " VSPLIT
 " 		map keys to move between screen in vsplit mode
 " tab moves between screens
-map <Tab> <C-W>w
+map <Tab> '<C-W>'w
 " - closes a window
 map - <C-W>c
 
@@ -119,7 +123,7 @@ let OmniCpp_GlobalScopeSearch = 1
 let OmniCpp_ShowAccess = 1
 let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
 let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+"let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
 let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
 let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " automatically open and close the popup menu / preview window
